@@ -1,3 +1,6 @@
+<%
+    String resPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,9 +42,9 @@
 	<nav id="sidebar-wrapper">
 		<a id="menu-close" href="#" class="close-btn toggle"><i class="ion-ios-close-empty"></i></a>
 	    <ul class="sidebar-nav">
-		    <li><a href="#accountConfirmation">Account</a></li>
+		    <li><a href="#home">Account</a></li>
 			<li><a href="#features">Network</a></li>
-			<li><a href="#assets">Assets</a></li>
+			<li><a href="#gallery">Assets</a></li>
 			<li><a href="#team">Personalized Offers</a></li>
 			<li><a href="#testimonial">On Spot Offer</a></li>
 			<li><a href="#contact">Contact us</a></li>
@@ -120,7 +123,7 @@
 						<p class="wow animated fadeIn" data-wow-delay=="0.7s">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 						tempor incididunt ut labore et dolore magna aliqua.</p>					
 						<ul class="team-social">
-							<li class="wow animated fadeInLeft facebook "><a href="#contact"><i class="ion-social-facebook"></i></a></li>
+							<li class="wow animated fadeInLeft facebook "><a href="http://localhost:8080/decodedubai/getFb"><i class="ion-social-facebook"></i></a></li>
 							<li class="wow animated fadeInLeft linkedin"><a href="#"><i class="ion-social-linkedin"></i></a></li>
 							<li class="wow animated fadeInRight googleplus"><a href="#"><i class="ion-social-googleplus-outline"></i></a></li>							
 						</ul>
@@ -147,28 +150,25 @@
 			<section class="mailbox">
 				<div class="container">
 					<div class="col-sm-12">
-						<form name="sentMessage" id="contactForm" novalidate action="#account">
+						<form name="sentMessage" id="contactForm" action="<%=resPath%>/register" novalidate>
 	                        <div class="row">
 	                            <div class="col-md-6">
 	                            	<div class="form-group">	                            
-										<select class="form-control" id="title" name="cars">
-										  <option value="volvo">Mr.</option>
-										  <option value="saab">Miss.</option>
-										  <option value="fiat">Mrs.</option>										  
-										</select>
-	                                   <!--  <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name."> -->
+										<input type="text" class="form-control" placeholder="Gender *" disabled id="gender" required 
+	                                    data-validation-required-message="Please enter your First name." value = "${gender}">
 	                                    <p class="help-block text-danger"></p>
 	                                </div>
 	                                <div class="form-group">
-	                                    <input type="text" class="form-control" placeholder="First Name *" id="fname" required data-validation-required-message="Please enter your First name.">
+	                                    <input type="text" class="form-control" placeholder="First Name *"  id="fname" required 
+	                                    data-validation-required-message="Please enter your First name." value = "${fname}">
 	                                    <p class="help-block text-danger"></p>
 	                                </div>
 	                                <div class="form-group">
-	                                    <input type="text" class="form-control" placeholder="Last Name *" id="lname" required data-validation-required-message="Please enter your last name.">
+	                                    <input type="text" class="form-control" placeholder="Last Name *"  id="lname" value = "${lname}" required data-validation-required-message="Please enter your last name.">
 	                                    <p class="help-block text-danger"></p>
 	                                </div>
 	                                <div class="form-group">
-	                                    <input type="text" class="form-control" placeholder="Email *" id="email" required data-validation-required-message="Please enter your email address.">
+	                                    <input type="text" class="form-control" placeholder="Email *" id="email" value = "${email}" required data-validation-required-message="Please enter your email address.">
 	                                    <p class="help-block text-danger"></p>
 	                                </div>
 	                                <div class="form-group">
@@ -216,17 +216,17 @@
 			
 			<section class="col-md-3 col-sm-6">
 					<div class="team-member wow animated fadeIn" data-wow-delay=="0.3s">
-						<div class="profile-pic"><img src="assets/img/bibek.jpg" class="img_res"></div>
-						<h2 class="wow animated fadeInDown" data-wow-delay=="0.7s">Congratulations !  <br /> Mr Mishra</h2>
+						<div class="profile-pic"><img src="${userImage}" class="img_res"></div>
+						<h2 class="wow animated fadeInDown" data-wow-delay=="0.7s">Congratulations !  <br /> Mr ${fullName}</h2>
 						<p class="wow animated fadeIn" data-wow-delay=="0.7s">You have sucussfully signed up for FDB personalized banking services.
-						You Account no : <Strong>0092625826582669</Strong></p>
+						You Account no : <Strong>${accountNumber}</Strong></p>
 						
 						<p>Currently your account is active with limited feaures. Please follow the below instructions to make
 						your account fully functional.
 						Your trust score is <strong>150</strong>.  <strong>350</strong> more points required to activate your account.
 						Choose your Social Media to Request for Trust </p>
 					 <ul class="team-social">
-							<li class="wow animated fadeInLeft facebook"><a href="#findFriend"><i class="ion-social-facebook"></i></a></li>
+							<li class="wow animated fadeInLeft facebook"><a href="#trustbuild"><i class="ion-social-facebook"></i></a></li>
 							<li class="wow animated fadeInLeft linkedin"><a href="#"><i class="ion-social-linkedin"></i></a></li>
 							<li class="wow animated fadeInRight googleplus"><a href="#"><i class="ion-social-googleplus-outline"></i></a></li>
 						</ul>
@@ -236,10 +236,107 @@
 			</section>
 		</section>
 	</section>
+	<!-- ****************************** Features Section ************************** -->
 
-	<!-- ****************************** Find Finincaial Patners**************** -->
+	<section id="features" class="block">
+		<section class="container">
+			<section class="row">
+				<div class="title-box"><h1 class="block-title wow animated rollIn">
+				<span class="bb-top-left"></span>
+				<span class="bb-bottom-left"></span>
+				Features
+				<span class="bb-top-right"></span>
+				<span class="bb-bottom-right"></span>
+				</h1></div>
+			</section>
+			
+			<section class="row">
+				<div class="col-sm-6 col-md-4">
+					<div class="feature-box wow animated flipInX" data-wow-delay="0.3s">
+						<i class="ion-ios-settings" style="color:#9b59b6;"></i>
+						<h2>Tune up</h2>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="feature-box wow animated flipInX" data-wow-delay="0.3s">
+						<i class="ion-ios-locked-outline" style="color:#d35400;"></i>
+						<h2>Security</h2>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="feature-box wow animated flipInX" data-wow-delay="0.3s">
+						<i class="ion-nuclear" style="color:#00ceb8;"></i>
+						<h2>Firewall</h2>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="feature-box wow animated flipInX" data-wow-delay="0.6s">
+						<i class="ion-ios-browsers-outline" style="color:#c0392b;"></i>
+						<h2>HD Widgets</h2>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="feature-box wow animated flipInX" data-wow-delay="0.6s">
+						<i class="ion-ios-loop" style="color:#27ae60;"></i>
+						<h2>Data Sync</h2>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="feature-box wow animated flipInX" data-wow-delay="0.6s">
+						<i class="ion-ios-glasses" style="color:#2c3e50;"></i>
+						<h2>Customize</h2>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+					</div>
+				</div>
+			</section>
+			<div class="clearfix"></div>
+		</section>
+	</section>
 
-	<section id="findFriend" class="block">
+	<!-- ****************************** Gallery Section ************************** -->
+
+	<section id="gallery" class="block">
+		<section class="container">
+			<section class="row">
+				<div class="title-box" style="color:#fff;"><h1 class="block-title wow animated rollIn">
+				<span class="bb-top-left" style="border-color: #fff; "></span>
+				<span class="bb-bottom-left" style="border-color: #fff; "></span>
+				Gallery
+				<span class="bb-top-right" style="border-color: #fff; "></span>
+				<span class="bb-bottom-right" style="border-color: #fff; "></span>
+				</h1></div>
+			</section>
+			<section class="row">
+				<div class="col-xs-12">
+					<div id="screenshots" class="owl-carousel owl-theme">
+					  <div class="item"><img src="assets/img/screenshot-1.png" class="img_res wow animated zoomIn"></div>
+					  <div class="item"><img src="assets/img/screenshot-2.png" class="img_res wow animated zoomIn"></div>
+					  <div class="item"><img src="assets/img/screenshot-3.png" class="img_res wow animated zoomIn"></div>
+					  <div class="item"><img src="assets/img/screenshot-4.png" class="img_res wow animated zoomIn"></div>
+					  <div class="item"><img src="assets/img/screenshot-5.png" class="img_res wow animated zoomIn"></div>
+					  <div class="item"><img src="assets/img/screenshot-6.png" class="img_res wow animated zoomIn"></div>
+					  <div class="item"><img src="assets/img/screenshot-7.png" class="img_res wow animated zoomIn"></div>
+					  <div class="item"><img src="assets/img/screenshot-3.png" class="img_res wow animated zoomIn"></div>
+					  <div class="item"><img src="assets/img/screenshot-5.png" class="img_res wow animated zoomIn"></div>
+					  <div class="item"><img src="assets/img/screenshot-1.png" class="img_res wow animated zoomIn"></div>
+					</div>
+					 <div class="customNavigation">
+					  <a class="btn prev gallery-nav wow animated bounceInLeft"><i class="ion-ios-arrow-left"></i></a> 
+					  <a class="btn next gallery-nav wow animated bounceInRight"><i class="ion-ios-arrow-right"></i></a>
+					</div>
+				</div>
+			</section>
+		</section>
+	</section>
+
+	<!-- ****************************** Team Section ************************** -->
+
+	<section id="team" class="block">
 		<section class="container">
 			<section class="row">
 				<div class="col-md-12">
@@ -247,7 +344,7 @@
 						<h1 class="block-title wow animated rollIn">
 							<span class="bb-top-left"></span>
 							<span class="bb-bottom-left"></span>
-							Ask for Trust
+							Development Team
 							<span class="bb-top-right"></span>
 							<span class="bb-bottom-right"></span>
 						</h1>
@@ -257,48 +354,58 @@
 			<section class="row">
 				<section class="col-md-3 col-sm-6">
 					<div class="team-member wow animated fadeIn" data-wow-delay=="0.3s">
-						<div class="profile-pic"><img src="assets/img/dev-1.jpg" class="img_res"></div>
+						<img src="assets/img/dev-1.jpg" class="img_res team-pic">
 						<h2 class="wow animated fadeInDown" data-wow-delay=="0.7s">Rubel Saheb</h2>
 						<p class="wow animated fadeIn" data-wow-delay=="0.7s">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 						tempor incididunt ut labore et dolore magna aliqua.</p>
 						<ul class="team-social">
-							<li class="wow animated fadeInLeft ionic"><a href="#trust1"><i class="ion-ionic"></i></a></li>
-						   <li class="wow animated fadeInLeft forward"><a href="#trust1"><i class="ion-forward"></i></a></li>
-							
+							<li class="wow animated fadeInLeft facebook"><a href="#"><i class="ion-social-facebook"></i></a></li>
+							<li class="wow animated fadeInLeft linkedin"><a href="#"><i class="ion-social-linkedin"></i></a></li>
+							<li class="wow animated fadeInRight googleplus"><a href="#"><i class="ion-social-googleplus-outline"></i></a></li>
+							<li class="wow animated fadeInRight github"><a href="#"><i class="ion-social-github"></i></a></li>
 						</ul>
 					</div>
 				</section>
 				<section class="col-md-3 col-sm-6">
-					<div class="team-member wow animated fadeIn" data-wow-delay=="0.3s" id="trust1">
-						<div class="profile-pic"><img src="assets/img/dev-2.jpg" class="img_res"></div>
+					<div class="team-member wow animated fadeIn" data-wow-delay=="0.3s">
+						<img src="assets/img/dev-2.jpg" class="img_res team-pic">
 						<h2 class="wow animated fadeInDown" data-wow-delay=="0.7s">Rubel Saheb</h2>
 						<p class="wow animated fadeIn" data-wow-delay=="0.7s">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 						tempor incididunt ut labore et dolore magna aliqua.</p>
 						<ul class="team-social">
-						<li class="wow animated fadeInLeft ionic"><a href="#trust2"><i class="ion-ionic"></i></a></li>
-						   <li class="wow animated fadeInLeft forward"><a href="#trust2"><i class="ion-forward"></i></a></li>						</ul>
+							<li class="wow animated fadeInLeft facebook"><a href="#"><i class="ion-social-facebook"></i></a></li>
+							<li class="wow animated fadeInLeft linkedin"><a href="#"><i class="ion-social-linkedin"></i></a></li>
+							<li class="wow animated fadeInRight googleplus"><a href="#"><i class="ion-social-googleplus-outline"></i></a></li>
+							<li class="wow animated fadeInRight github"><a href="#"><i class="ion-social-github"></i></a></li>
+						</ul>
 					</div>
 				</section>
 				<section class="col-md-3 col-sm-6">
-					<div class="team-member wow animated fadeIn" data-wow-delay=="0.3s" id="trust2">
-						<div class="profile-pic"><img src="assets/img/dev-3.jpg" class="img_res" ></div>
+					<div class="team-member wow animated fadeIn" data-wow-delay=="0.3s">
+						<img src="assets/img/dev-3.jpg" class="img_res team-pic">
 						<h2 class="wow animated fadeInDown" data-wow-delay=="0.7s">Rubel Saheb</h2>
 						<p class="wow animated fadeIn" data-wow-delay=="0.7s">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 						tempor incididunt ut labore et dolore magna aliqua.</p>
 						<ul class="team-social">
-							<li class="wow animated fadeInLeft ionic"><a href="#trust3"><i class="ion-ionic"></i></a></li>
-						   <li class="wow animated fadeInLeft forward"><a href=""><i class="ion-forward"></i></a></li>						</ul>
+							<li class="wow animated fadeInLeft facebook"><a href="#"><i class="ion-social-facebook"></i></a></li>
+							<li class="wow animated fadeInLeft linkedin"><a href="#"><i class="ion-social-linkedin"></i></a></li>
+							<li class="wow animated fadeInRight googleplus"><a href="#"><i class="ion-social-googleplus-outline"></i></a></li>
+							<li class="wow animated fadeInRight github"><a href="#"><i class="ion-social-github"></i></a></li>
+						</ul>
 					</div>
 				</section>
 				<section class="col-md-3 col-sm-6">
-					<div class="team-member wow animated fadeIn" data-wow-delay=="0.3s" id="trust3">
-						<div class="profile-pic"><img src="assets/img/dev-4.jpg" class="img_res"></div>
+					<div class="team-member wow animated fadeIn" data-wow-delay=="0.3s">
+						<img src="assets/img/dev-4.jpg" class="img_res team-pic">
 						<h2 class="wow animated fadeInDown" data-wow-delay=="0.7s">Rubel Saheb</h2>
 						<p class="wow animated fadeIn" data-wow-delay=="0.7s">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 						tempor incididunt ut labore et dolore magna aliqua.</p>
 						<ul class="team-social">
-							<li class="wow animated fadeInLeft ionic"><a href="#accountConfirmation"><i class="ion-ionic"></i></a></li>
-						   <li class="wow animated fadeInLeft forward"><a href="#accountConfirmation"><i class="ion-forward"></i></a></li>						</ul>
+							<li class="wow animated fadeInLeft facebook"><a href="#"><i class="ion-social-facebook"></i></a></li>
+							<li class="wow animated fadeInLeft linkedin"><a href="#"><i class="ion-social-linkedin"></i></a></li>
+							<li class="wow animated fadeInRight googleplus"><a href="#"><i class="ion-social-googleplus-outline"></i></a></li>
+							<li class="wow animated fadeInRight github"><a href="#"><i class="ion-social-github"></i></a></li>
+						</ul>
 					</div>
 				</section>
 			</section>
@@ -307,55 +414,13 @@
 
 	<!-- ****************************** Testimonial ************************** -->
 
-	<section id="accountConfirmation" class="block">
-		<section class="container">
-			<section class="row">
-				<div class="col-md-12">
-					<div class="title-box">
-						<h1 class="block-title wow animated rollIn">
-							<span class="bb-top-left"></span>
-							<span class="bb-bottom-left"></span>
-							Account Confirmation
-							<span class="bb-top-right"></span>
-							<span class="bb-bottom-right"></span>
-						</h1>
-					</div>
-				</div>
-			</section>
-			<section class="row">
-			
-			<section class="col-md-3 col-sm-6">
-					<div class="team-member wow animated fadeIn" data-wow-delay=="0.3s">
-						<div class="profile-pic"><img src="assets/img/bibek.jpg" class="img_res"></div>
-						<h2 class="wow animated fadeInDown" data-wow-delay=="0.7s">Congratulations !  <br /> Mr Mishra</h2>
-					    <h2 class="wow animated fadeInDown" data-wow-delay=="0.7s">Your Digital Reputation : 600</h2>
-						
-						
-						<p class="wow animated fadeIn" data-wow-delay=="0.7s">You account has been activated. </br>
-						Account no : <Strong>00926258400000</Strong></p>
-						
-						<p></p>
-					 <ul class="team-social">
-							<li class="wow animated fadeInLeft b"><a href="#" title="settings"><i class="ion-gear-b"></i></a></li>
-							<li class="wow animated fadeInLeft information"><a href="#" title="information"><i class="ion-ios-information"></i></a></li>
-							<li class="wow animated fadeInRight people"><a href="#testimonial" title="finincaial Network" ><i class="ion-ios-people"></i></a></li>
-						</ul>
-					</div>
-				</section>
-				
-			</section>
-		</section>
-	</section>
-
-
-	<!-- ****************************** Finincal Network ************************** -->
-<section id="testimonial" class="block">
+	<section id="testimonial" class="block">
 		<section class="container">
 			<section class="row">
 				<div class="title-box"><h1 class="block-title wow animated rollIn">
 				<span class="bb-top-left"></span>
 				<span class="bb-bottom-left"></span>
-				Finanical Network
+				Precious Reviews
 				<span class="bb-top-right"></span>
 				<span class="bb-bottom-right"></span>
 				</h1></div>
@@ -368,35 +433,13 @@
 						<div class="item">
 							<div class="row">
 								<div class="col-sm-4 col-sm-offset-1">
-									<div class="profile-pic"><img class="img_res" src="assets/img/client-two.png"></div>
+									<div class="client-pic"><img class="img_res" src="assets/img/client-one.png"></div>
 									<p class="review-star">
-										Reputation : 5000
-
-									</p>
-								</div>
-								<div class="col-sm-6">
-									<p class="review-desc">
-										Request for Credit Tranfser. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt ut labore et
-									</p>
-									<ul class="team-social">
-							<li class="wow animated fadeInLeft"><a href="#" title="Request for Credit" style="color:white"><i class="ion-card"></i></a></li>
-							<li class="wow animated fadeInLeft"><a href="#" title="information" style="color:white"><i class="ion-ios-information"></i></a></li>
-							<li class="wow animated fadeInRight"><a href="#testimonial" title="finincaial Network" style="color:white"><i class="ion-email"></i></a></li>
-						</ul>
-									<p class="client-name">
-										Mark
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="row">
-								<div class="col-sm-4 col-sm-offset-1">
-									<div class="profile-pic"><img class="img_res" src="assets/img/client-three.png"></div>
-									<p class="review-star">
-										 Reputation : 3000
-
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star-outline"></i>
 									</p>
 								</div>
 								<div class="col-sm-6">
@@ -405,13 +448,8 @@
 										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 									</p>
-									<ul class="team-social">
-							<li class="wow animated fadeInLeft"><a href="#" title="Request for Credit" style="color:white"><i class="ion-card"></i></a></li>
-							<li class="wow animated fadeInLeft"><a href="#" title="information" style="color:white"><i class="ion-ios-information"></i></a></li>
-							<li class="wow animated fadeInRight"><a href="#testimonial" title="finincaial Network" style="color:white"><i class="ion-email"></i></a></li>
-						</ul>
 									<p class="client-name">
-										Dayne
+										Shahjahan Jewel
 									</p>
 								</div>
 							</div>
@@ -419,11 +457,13 @@
 						<div class="item">
 							<div class="row">
 								<div class="col-sm-4 col-sm-offset-1">
-									<div class="profile-pic"><img class="img_res" src="assets/img/client-four.png"></div>
+									<div class="client-pic"><img class="img_res" src="assets/img/client-one.png"></div>
 									<p class="review-star">
-										Reputation : 2500
-									
-
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star-outline"></i>
 									</p>
 								</div>
 								<div class="col-sm-6">
@@ -432,13 +472,8 @@
 										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 									</p>
-									<ul class="team-social">
-							<li class="wow animated fadeInLeft"><a href="#" title="Request for Credit" style="color:white"><i class="ion-card"></i></a></li>
-							<li class="wow animated fadeInLeft"><a href="#" title="information" style="color:white"><i class="ion-ios-information"></i></a></li>
-							<li class="wow animated fadeInRight"><a href="#testimonial" title="finincaial Network" style="color:white"><i class="ion-email"></i></a></li>
-						</ul>
 									<p class="client-name">
-										Pat
+										Shahjahan Jewel
 									</p>
 								</div>
 							</div>
@@ -446,9 +481,13 @@
 						<div class="item">
 							<div class="row">
 								<div class="col-sm-4 col-sm-offset-1">
-									<div class="profile-pic"><img class="img_res" src="assets/img/client-one.png"></div> 
+									<div class="client-pic"><img class="img_res" src="assets/img/client-one.png"></div>
 									<p class="review-star">
-										Reputation : 2000
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star-outline"></i>
 									</p>
 								</div>
 								<div class="col-sm-6">
@@ -457,16 +496,34 @@
 										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 									</p>
-									<ul class="team-social">
-							<li class="wow animated fadeInLeft"><a href="#" title="Request for Credit" style="color:white"><i class="ion-card"></i></a></li>
-							<li class="wow animated fadeInLeft"><a href="#" title="information" style="color:white"><i class="ion-ios-information"></i></a></li>
-							<li class="wow animated fadeInRight"><a href="#testimonial" title="finincaial Network" style="color:white"><i class="ion-email"></i></a></li>
-						</ul>
 									<p class="client-name">
-										Steve
+										Shahjahan Jewel
 									</p>
 								</div>
-								
+							</div>
+						</div>
+						<div class="item">
+							<div class="row">
+								<div class="col-sm-4 col-sm-offset-1">
+									<div class="client-pic"><img class="img_res" src="assets/img/client-one.png"></div> 
+									<p class="review-star">
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star"></i>
+										<i class="ion-ios-star-outline"></i>
+									</p>
+								</div>
+								<div class="col-sm-6">
+									<p class="review-desc">
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+									</p>
+									<p class="client-name">
+										Shahjahan Jewel
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -474,33 +531,38 @@
 			</section>
 		</section>
 	</section>
-	
-	
-		<section id=assets class="block">
+
+	<!-- ****************************** Subscribe Section ************************** -->
+
+	<section id="subscribe">
 		<section class="container">
 			<section class="row">
-				<div class="col-md-12">
-					<div class="title-box">
-						<h1 class="block-title wow animated rollIn">
-							<span class="bb-top-left"></span>
-							<span class="bb-bottom-left"></span>
-							Assets
-							<span class="bb-top-right"></span>
-							<span class="bb-bottom-right"></span>
-						</h1>
-					</div>
+				<div class="col-sm-10 col-sm-offset-1">
+					<p class="susbcribe-text">
+					<strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor</strong> incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur.</p>
 				</div>
 			</section>
+		</section>
+		<section class="container subscribe-wrap">
 			<section class="row">
-				<div class="col-xs-12">
-					<div id="screenshots" class="owl-carousel owl-theme">
-					  <div class="item"><img src="assets/img/screenshot-1.jpg" class="img_res wow animated zoomIn"></div>
-					  <div class="item"><img src="assets/img/screenshot-2.png" class="img_res wow animated zoomIn"></div>
-					  <div class="item"><img src="assets/img/screenshot-3.jpg" class="img_res wow animated zoomIn"></div>
-					</div>
-					 <div class="customNavigation">
-					  <a class="btn prev gallery-nav wow animated bounceInLeft"><i class="ion-ios-arrow-left"></i></a> 
-					  <a class="btn next gallery-nav wow animated bounceInRight"><i class="ion-ios-arrow-right"></i></a>
+				<div class="col-sm-12">
+					<div class="row">
+						<form role="form">
+							<div class="col-xs-10">
+								<div class="form-group">
+									<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+								</div>
+							</div>
+							<div class="col-xs-2">
+								<button type="submit" class="btn-custom">
+								<i class="ion-ios-arrow-thin-right"></i>
+								</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</section>
@@ -575,7 +637,7 @@
 			<section class="container">
 				<section class="row">
 					<div class="col-sm-6">
-						<span>By</span>
+						<span>Theme By</span>
 						<h1 class="footer-logo">
 							<a href="http://bibek.in">QuantumCoders</a>
 						</h1>

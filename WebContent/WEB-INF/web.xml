@@ -9,4 +9,30 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+   <servlet>
+    <description></description>
+    <display-name>auditlogs</display-name>
+    <servlet-name>FaceBookAuth</servlet-name>
+    <servlet-class>com.fdb.mobile.servlet.EmiratesWebAction</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FaceBookUser</servlet-name>
+    <servlet-class>com.fdb.mobile.servlet.FaceBookLogin</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>RegisterFaceBookUser</servlet-name>
+    <servlet-class>com.fdb.mobile.servlet.RegisterFaceBookUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FaceBookAuth</servlet-name>
+    <url-pattern>/getFb</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>FaceBookUser</servlet-name>
+    <url-pattern>*.sec</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RegisterFaceBookUser</servlet-name>
+    <url-pattern>/register</url-pattern>
+  </servlet-mapping>
 </web-app>
