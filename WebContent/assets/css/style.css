@@ -363,7 +363,7 @@ a:hover {
 
 
 #gallery{
-    background: url(../img/gallery-bg.png) no-repeat;
+    /*background: url(../img/gallery-bg.png) no-repeat;*/
     background-size: cover;
     background-attachment: fixed;
 }
